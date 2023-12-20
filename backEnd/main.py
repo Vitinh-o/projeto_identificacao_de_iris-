@@ -5,33 +5,23 @@ from sklearn.svm import SVC
 app = FastAPI()
 
 
-@app.post("/enviar-json")
-async def enviar_json(dados_json: dict):
-    # Faça algo com os dados JSON recebidos
-    # Neste exemplo, apenas os retorna
-    return dados_json
-
-
 @app.post("/receber-form")
 async def receber_formulario(
-    campo1: str = Form(...),
-    campo2: int = Form(...),
-    campo3: float = Form(...),
-    campo_opcional: str = Form(None),
+    comprimento_sepala: float = Form(...),
+    largura_sepala: float = Form(...),
+    comprimento_petala: float = Form(...),
+    largura_petala: float = Form(...),
 ):
-    # Faça algo com os dados do formulário
-    # Neste exemplo, apenas os retorna
-    return {
-        "campo1": campo1,
-        "campo2": campo2,
-        "campo3": campo3,
-        "campo_opcional": campo_opcional,
-    }
+    
 
-if __name__ == "__main__":
-    import uvicorn
+    X = [comprimento_sepala, largura_sepala, comprimento_petala, largura_petala]
 
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    svm = carregar_modelo_ia()
+
+    predicao = fazer_previsao(svm, X)
+
+    return {"resposta": predicao}
+
 
 
 def carregar_modelo_ia():
@@ -46,10 +36,14 @@ def carregar_modelo_ia():
 
 def fazer_previsao(svm, X):
 
+    tabela_de_convercao = ["Setosa", "Versicolor", "Virgínica"]
+    
     y_pred = svm.predict()
 
-    return y_pred
+    return tabela_de_convercao[y_pred]
 
 
-svm = carregar_modelo_ia()
+if __name__ == "__main__":
+    import uvicorn
 
+    uvicorn.run(app, host="127.0.0.1", port=8000)
