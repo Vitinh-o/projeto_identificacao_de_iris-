@@ -35,5 +35,18 @@ h2{text-align: center;
     font-size: xx-large;}
 
 
-section{background-color: rgb(42, 167, 42);}
+section{background-color: rgb(42, 167, 42);
+         height: 400px;}
 
+label{display: inline-block; 
+        font-weight: bolder;
+        font-size: 1.6rem;
+        margin-left: 35px ;}
+    
+    
+input{border-radius: 30px;
+        height: 20px;
+        width: 200px;
+        margin-left: 100px;
+        display:inline-block;}
+    
