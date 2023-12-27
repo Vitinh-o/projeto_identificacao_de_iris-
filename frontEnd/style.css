@@ -1,52 +1,76 @@
-
-
-
-body{font-family: Arial, Helvetica, sans-serif;
-        font-size: larger;
-        color: white;
-        background-color: red;
-        margin: 0;}
-
-
-header{height: 400px;
-        background-image: url(./imagens/flower-76336_1920.jpg);
-        background-size:cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        color: black;
-        font-weight: bolder;
-        }
-
-
-h1{text-align: left;
+body {
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
     font-family: 'Pacifico', cursive;
-    margin-top: 0;
-    padding-top: 0;
-    float: left;}
+    font-size: 2em;
+    margin-bottom: 10px;
+}
 
+.linkGitHub {
+    display: block;
+    margin-bottom: 20px;
+}
 
-.linkGitHub{margin-left: 900px;
-            color:black ;
-            text-decoration: none;}
+h2, p {
+    text-align: center;
+}
 
-h2{text-align: center;
-    margin-top: 100px;
-    font-size: xx-large;}
+form {
+    text-align: center;
+}
 
+label {
+    display: block;
+    margin-top: 10px;
+}
 
-section{background-color: rgb(42, 167, 42);
-         height: 400px;}
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
 
-label{display: inline-block; 
-        font-weight: bolder;
-        font-size: 1.6rem;
-        margin-left: 35px ;}
-    
-    
-input{border-radius: 30px;
-        height: 20px;
-        width: 200px;
-        margin-left: 100px;
-        display:inline-block;}
-    
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+section h3 {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 160px;
+}
+
+@media only screen and (max-width: 600px) {
+    input {
+        width: calc(100% - 20px);
+    }
+}
