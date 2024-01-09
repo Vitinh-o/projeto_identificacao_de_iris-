@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: bisque;
 }
 
 main {
@@ -45,6 +46,7 @@ input {
     margin-top: 5px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 button {
@@ -68,6 +70,13 @@ footer {
     text-align: center;
     margin-top: 160px;
 }
+
+a{text-decoration: none;
+    color: red;
+    }
+
+a:hover{color: black;
+        font-weight: bolder;}
 
 @media only screen and (max-width: 600px) {
     input {
