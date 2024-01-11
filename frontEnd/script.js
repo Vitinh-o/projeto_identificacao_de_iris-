@@ -1,26 +1,32 @@
 
 function enviarFormulario() {
     // Coletar dados do formulário
-    const formulario = document.getElementById('formIris');
-    let formData = new FormData(formulario);
-  
-    console.log(formData)
+    let form = {
+                comprimento_sepala: document.getElementById("comprimentoSepala").value,
+                largura_sepala: document.getElementById("larguraSepala").value,
+                comprimento_petala: document.getElementById("comprimentoPetala").value,
+                largura_petala: document.getElementById("larguraPetala").value
+              }
+
+    console.log(form)
 
     // Enviar dados para o backend usando fetch
     fetch('http://127.0.0.1:8000/endpoint', {
       method: 'POST',
-      body: formData,
-    })
-    
-    .then(response => response.json())
-    .then(data => {
+      headers: {
+          'Content-Type': 'application/json', // Defina o cabeçalho Content-Type para application/json
+      },
+      body: JSON.stringify(form), // Converte o objeto para JSON
+  })
+  .then(response => response.json())
+  .then(data => {
       console.log('Resposta do servidor:', data);
-      // Faça algo com a resposta do servidor, se necessário
-    })
-    .catch(error => {
+  })
+  .catch(error => {
       console.error('Erro ao enviar formulário:', error);
-    });
-  }
+  });
+
+}
 
 
 

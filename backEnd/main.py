@@ -2,6 +2,8 @@ from fastapi import FastAPI, Form, HTTPException
 import pickle
 from sklearn.svm import SVC
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
 
 
 app = FastAPI()
@@ -20,25 +22,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Formulario(BaseModel):
+    comprimento_sepala: str
+    largura_sepala: str
+    comprimento_petala: str
+    largura_petala: str
+
+
 
 @app.post("/endpoint")
-async def receber_formulario(
-        comprimento_sepala: str = Form(...),
-        largura_sepala: str = Form(...),
-        comprimento_petala: str = Form(...),
-        largura_petala: str = Form(...),
-):
-    
-    print("teste")
-    
+async def receber_formulario(form: Formulario):
+        
     try:
-        X = [comprimento_sepala, largura_sepala, comprimento_petala, largura_petala]
-
-        print(X)
+        X = [float(form.comprimento_sepala),
+        float(form.largura_sepala),
+        float(form.comprimento_petala),
+        float(form.largura_petala)]
 
         svm = carregar_modelo_ia()
 
-        predicao = fazer_previsao(svm, X)
+        print(X + "-------------------------------------------------")
+
+        predicao = fazer_previsao(svm, [X])
 
         return {"resposta": predicao}
 
@@ -49,9 +54,13 @@ async def receber_formulario(
 
 def carregar_modelo_ia():
     
-    arquivo = "./iaModel/classificador_svm.sav" 
+    arquivo = "backEnd\iaModel\classificador_svm.sav" 
+
+    print("---------------------111111----------------------------")
 
     classificador_svm = pickle.load(open(arquivo))
+
+    print("------------------------ 22222 -------------------------")
 
     return classificador_svm
 
