@@ -1,3 +1,34 @@
+function colocarResposta(respostaServidor){
+
+  resposta = document.getElementById("resultado")
+
+  imagem = document.getElementById("imagemFlor")
+
+  console.log(resposta)
+
+  resposta.innerText = respostaServidor 
+
+  if(respostaServidor == "Setosa")
+    imagem.innerHTML = '<img src="./imagens/iris_setosa.png" height="400" alt="iris_setosa" srcset="">'
+
+  else if(respostaServidor == "Virgínica")
+    imagem.innerHTML = '<img src="./imagens/iris_virginica.png"  height="400" alt="flor virgínica">'
+
+  else if(respostaServidor == "Versicolor")
+    imagem.innerHTML = '<img src="./imagens/iris_vesicolor.jpg"  height="400" alt="iris versicolor" srcset="">'
+
+  else{ resposta.innerText = "Algo deu errado, tente novamente"} 
+
+}
+
+
+
+
+
+
+
+
+
 
 function enviarFormulario() {
     // Coletar dados do formulário
@@ -21,6 +52,10 @@ function enviarFormulario() {
   .then(response => response.json())
   .then(data => {
       console.log('Resposta do servidor:', data);
+
+      respostaServidor = data.resposta
+      colocarResposta(respostaServidor)
+
   })
   .catch(error => {
       console.error('Erro ao enviar formulário:', error);
@@ -29,11 +64,12 @@ function enviarFormulario() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  const botao = document.getElementById('enviar');
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const botao = document.getElementById('enviar');
-
-    botao.addEventListener('click', function() {
-    enviarFormulario()
+  botao.addEventListener('click', function() {
+  enviarFormulario()
     });
   });
+
+

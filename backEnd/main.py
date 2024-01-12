@@ -23,6 +23,7 @@ app.add_middleware(
 )
 
 class Formulario(BaseModel):
+
     comprimento_sepala: str
     largura_sepala: str
     comprimento_petala: str
@@ -41,9 +42,10 @@ async def receber_formulario(form: Formulario):
 
         svm = carregar_modelo_ia()
 
-        print(X + "-------------------------------------------------")
 
-        predicao = fazer_previsao(svm, [X])
+        predicao = fazer_previsao(svm, X)
+
+        
 
         return {"resposta": predicao}
 
@@ -54,13 +56,12 @@ async def receber_formulario(form: Formulario):
 
 def carregar_modelo_ia():
     
-    arquivo = "backEnd\iaModel\classificador_svm.sav" 
+    caminho_arquivo = "backEnd\iaModel\classificador_svm.sav" 
 
-    print("---------------------111111----------------------------")
 
-    classificador_svm = pickle.load(open(arquivo))
-
-    print("------------------------ 22222 -------------------------")
+    with open(caminho_arquivo, 'rb') as arquivo:
+        classificador_svm = pickle.load(arquivo)
+    
 
     return classificador_svm
 
@@ -72,7 +73,8 @@ def fazer_previsao(svm, X):
     
     y_pred = svm.predict([X])
 
-    return tabela_de_convercao[y_pred]
+
+    return tabela_de_convercao[int(y_pred)]
 
 
 if __name__ == "__main__":

@@ -56,11 +56,17 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 button:hover {
     background-color: #45a049;
 }
+
+#divDoBotao{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;}
 
 section h3 {
     text-align: center;
@@ -68,7 +74,7 @@ section h3 {
 
 footer {
     text-align: center;
-    margin-top: 160px;
+    margin-top: 100px;
 }
 
 a{text-decoration: none;
@@ -83,3 +89,8 @@ a:hover{color: black;
         width: calc(100% - 20px);
     }
 }
+
+
+h4{text-align: center;
+    font-weight: bolder;
+    font-size: 18px;}
